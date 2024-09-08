@@ -30,12 +30,10 @@ def generate_self_signed_cert():
         encryption_algorithm=serialization.NoEncryption()
     )
 
-    return cert_pem, private_key_pem
+    return cert_pem
 
 # Example usage
 if __name__ == "__main__":
-    cert, key = generate_self_signed_cert()
+    cert = generate_self_signed_cert()
     with open("server_cert.pem", "wb") as f:
         f.write(cert)
-    with open("server_key.pem", "wb") as f:
-        f.write(key)

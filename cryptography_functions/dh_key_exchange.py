@@ -17,8 +17,15 @@ def compute_shared_secret(private_key, peer_public_key):
 # Example usage
 if __name__ == "__main__":
     parameters = generate_dh_parameters()
+    print(parameters)
     private_key_1, public_key_1 = generate_dh_keypair(parameters)
     private_key_2, public_key_2 = generate_dh_keypair(parameters)
+
+    print("Private Key 1:", private_key_1)
+    print("Public Key 1:", public_key_1)
+    print("Private Key 2:", private_key_2)
+    print("Public Key 2:", public_key_2)
+
 
     shared_secret_1 = compute_shared_secret(private_key_1, public_key_2)
     shared_secret_2 = compute_shared_secret(private_key_2, public_key_1)
