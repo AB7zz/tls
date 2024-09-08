@@ -1,0 +1,6 @@
+cffi==1.17.1
+cryptography==43.0.1
+pycparser==2.22
+setuptools==72.1.0
+wheel==0.43.0
+colorama==0.4.6
