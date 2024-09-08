@@ -32,8 +32,8 @@ def client_handshake(sock):
     # 2. Receive ServerHello
     print("\n" + "="*50 + "\n")
     print(f"{Fore.BLUE}Client: Waiting to receive ServerHello message from server...{Style.RESET_ALL}")
-    server_hello = sock.recv(1024).decode()
-    print(f"{Fore.GREEN}Client received ServerHello: {server_hello}{Style.RESET_ALL}\n")
+    server_hello_message = sock.recv(1024).decode()
+    print(f"{Fore.GREEN}Client received ServerHello: {server_hello_message}{Style.RESET_ALL}\n")
     # time.sleep(5)
 
     # 3. Receive Server Certificate
@@ -107,8 +107,7 @@ def client_handshake(sock):
     print("\n" + "="*50 + "\n")
     print(f"{Fore.BLUE}Client: Creating Finished message using SHA-256 hash...{Style.RESET_ALL}")
     client_finished_message = sha256_hash(
-        client_hello.encode() +
-        server_hello.encode() +
+        server_hello_message.encode() +
         server_cert +
         server_hello_done.encode()
     )
@@ -122,8 +121,7 @@ def client_handshake(sock):
     print(f"{Fore.BLUE}Client: Waiting to receive Server Finished message...{Style.RESET_ALL}")
     server_finished_message = sock.recv(1024).decode()
     expected_hash = sha256_hash(
-        client_hello.encode() +
-        server_hello.encode() +
+        server_hello_message.encode() +
         server_cert +
         server_hello_done.encode()
     )

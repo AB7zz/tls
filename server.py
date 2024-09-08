@@ -95,8 +95,7 @@ def server_handshake(conn):
     print(f"{Fore.BLUE}Server: Waiting to receive Client Finished message...{Style.RESET_ALL}")
     client_finished_message = conn.recv(1024).decode()
     expected_hash = sha256_hash(
-        client_hello.encode() +
-        server_hello.encode() +
+        server_hello_message.encode() +
         server_cert +
         server_hello_done.encode()
     )
@@ -109,8 +108,7 @@ def server_handshake(conn):
     print("\n" + "="*50 + "\n")
     print(f"{Fore.BLUE}Server: Creating Finished message using SHA-256 hash...{Style.RESET_ALL}")
     server_finished_message = sha256_hash(
-        client_hello.encode() +
-        server_hello.encode() +
+        server_hello_message.encode() +
         server_cert +
         server_hello_done.encode()
     )
